@@ -1,3 +1,7 @@
+body {
+    font-family: roboto condensed;
+}
+
 .contenedor{
     width: 100%;
     height: 100%;
@@ -188,9 +192,15 @@ figure:hover > md-grid-tile-footer{
 md-input-container [ng-messages]{
     opacity: 1!important;
 }
-input[type=number].input-number–noSpinners { -moz-appearance: textfield; }
-input[type=number].input-number–noSpinners::-webkit-inner-spin-button,
-input[type=number].input-number–noSpinners::-webkit-outer-spin-button {
+
+md-input-container{
+    margin-top: 2px!important;
+    margin-bottom: 2px!important;
+}
+
+input[type=number].input-numberï¿½noSpinners { -moz-appearance: textfield; }
+input[type=number].input-numberï¿½noSpinners::-webkit-inner-spin-button,
+input[type=number].input-numberï¿½noSpinners::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -205,4 +215,20 @@ section{
 }
 .whiteBackground{
     background-color: white;
+}
+
+.error{
+    color: red;
+}
+
+form.submitted .ng-invalid{
+    border:1px solid #f00;
+}
+
+#background {
+    width: 100%;
+    background: url(../img/bg_origen.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }

@@ -28,7 +28,7 @@
             <a href='#quienes_somos'> <li class="seccion_navegador">QUIÉNES SOMOS</li></a>
             <a href='#origen'> <li class="seccion_navegador">ORIGEN</li></a>
             <a href='#datos'><li class="seccion_navegador">DATOS</li></a>
-            <a href='#contacto'><li class="seccion_navegador">CONTACTO</li></a>
+            <a href='#' id="unete"><li class="seccion_navegador">ÚNETE</li></a>
         </ul>
     </nav>
 </header>
@@ -36,14 +36,14 @@
 <section>
     <div id="home">
         <div id="cnt_tx_home">
-            <p class="font_home">EL MUNDO NECESITA VOLUNTARIOS QUE ACTUEN POR SUS SUEÑOS VERDADEROS AGENTES DE CAMBIO</p>
+            <p class="font_home">EL MUNDO NECESITA VOLUNTARIOS QUE ACTUEN POR SUS SUEÑOS. VERDADEROS AGENTES DE CAMBIO</p>
         </div>
     </div>
 
     <div id="quienes_somos">
         <div id="cnt_tx_quienes">
             <p class="titulo_quienes">¿QUIÉNES SOMOS?</p>
-            <p class="tx_quienes">Somos la primera red de soñadores, donde encontraras a la organización solidaria ideal para ti. Te ayudaresmos a ser voluntario en el tema que más te apasione y así marcar la diferencia en tu país.</p>
+            <p class="tx_quienes">Somos la primera red de soñadores, donde encontraras a la organización solidaria ideal para ti. Te ayudaremos a ser voluntario en el tema que más te apasione y así marcar la diferencia en tu país.</p>
 
             <p class="subtitulo_quienes">Nuestro objetivo</p>
             <p class="tx_quienes">Crear una cultura solidaria, promoviendo el voluntariado junto contigo.</p>
@@ -65,7 +65,7 @@
             <img class="ic_origen" src="/img/ic_zamka_origen.png">
         </div>
         <div id="tx_origen">
-            El origen de nuestro nombre viene de la palabra ZAMKA, que quiere decir sueño en Aimara. Zamka gira entorno a muchos sueños, los sueños de los voluntarios potenciales por un país mejor, el dueño de las organizaciones solidarias que luchan día a día por marcar la diferencia y los sueños de todos los beneficiados de las diferentes laborel solidarias. Concretemos nuestros sueños, juntos podemos hacer realidad el país con el que soñamos.
+            El origen de nuestro nombre viene de la palabra ZAMKA, que quiere decir sueño en Aimara. Zamka gira entorno a muchos sueños, los sueños de los voluntarios potenciales por un país mejor, el sueño de las organizaciones solidarias que luchan día a día por marcar la diferencia y los sueños de todos los beneficiados de las diferentes labores solidarias. Concretemos nuestros sueños. Juntos podemos hacer realidad el país con el que soñamos.
         </div>
     </div>
     <div id="datos">
@@ -107,52 +107,6 @@
     </div>
 </section>
 
-<footer>
-    <div id="contacto">
-        <div id="unete_contacto">
-            <div id="frase_unete">ÚNETE AL SUEÑO</div>
-            <div id="tx_unete">
-                Muy pronto podras ser parte del cambio! Dejanos tus datos para formar parte de esta comunidad.
-            </div>
-        </div>
-        <div id="content_datos">
-            <div id="formulario">
-                <form>
-                    <select class="tipo_content_form" id="tipo_usuario">
-                        <option value="voluntario">Voluntario</option>
-                        <option value="organizacion">Organización solidaria</option>
-                    </select>
-                    <input type="text" class="content_form" id="nombre" placeholder="Nombres">
-                    <input type="text" class="content_form" id="e-mail" placeholder="Correo electrónico">
-                    <input type="button" id="enviar_form" value="Enviar">
-                </form>
-            </div>
-            <div id="contacto_separador">
-                <div class="separador_vertical"></div>
-            </div>
-            <div id="datos_contacto">
-                <div>
-                    <div id="logo_contac"><img src="/img/logo_contac.png">
-                    </div>
-                </div>
-                <div class="datos_contacto">
-                    <b class="bold">E:</b>  hola@zamka.com<br>
-                    <b class="bold">T:</b>  984505165<br>
-                    <b class="bold">W:</b>  www.zamka.org<br>
-                </div>
-                <div id="conten_ic_redes">
-                    <a href="https://www.facebook.com/pages/Zamka/705880659483641"><img src="/img/ic_face.png"></a>
-                    <a href="https://twitter.com/zamka_org"><img src="/img/ic_tw.png"></a>
-                    <!--a href="https://www.youtube.com"><img src="/img/ic_youtube.png"></a-->
-                </div>
-            </div>
-        </div>
-        <div id="credit">
-            <b class="bold">Copyright © 2015</b> Todo el contenido de esta página web esta estrictamente protegido por derechos de autor.<br>
-            Sitio diseñado por <b class="bold">FRACTRAL/STRUDIO</b>
-        </div>
-    </div>
-</footer>
 <script>
     $(document).ready(function() {
 
@@ -179,19 +133,44 @@
             }
         });
 
+        $("#unete").click(function(){
+            swal({
+                title: "¿Cómo deseas contribuir?",
+                text: "Cuéntanos de qué forma deseas ayudarnos a ayudar",
+                showCancelButton: true,
+                type: "success",
+                confirmButtonColor: "#228B22",
+                confirmButtonText: "Voluntario",
+                cancelButtonColor: "#228B22",
+                cancelButtonText: "ONG",
+                closeOnConfirm: false,
+                closeOnCancel: false
+            }, function(isConfirm) {
+                if (isConfirm) {
+                    window.location.href = "http://www.zamka.org/App";
+                } else {
+                    swal({
+                        title: "ONG",
+                        text: "Envíanos un correo a hola@zamka.org para ayudarte con la inscripción",
+                        imageUrl: "/img/logo_zamka.png"
+                    });
+                }
+            });
+        });
+
+        // Asignación CSS inicial (transición)
+        $("#logo_nav").css({"marginTop":"150px","width":"150px","height":"150px"});
 
         $(window).scroll(function(){
             scroll = $(window).scrollTop();
 
-
-            if(scroll > 150)
+            if(scroll > 80)
             {
                 if(!flag)
                 {
                     $("#logo_nav").css({"marginTop":"-18px","width":"50px","height":"50px"});
                     flag = true;
                 }
-
             }
             else
             {
@@ -228,7 +207,7 @@
             var dato1time = setInterval(
                     function(){$("#dato1 span").html(i);
                         i++;
-                        if(i==35)
+                        if(i>=35)
                         {
                             clearInterval(dato1time);
                         }
@@ -237,7 +216,7 @@
             var dato2time = setInterval(
                     function(){$("#dato2 span").html(j);
                         j++;
-                        if(j==17)
+                        if(j>=17)
                         {
                             clearInterval(dato2time);
                         }
@@ -246,7 +225,7 @@
             var dato3time = setInterval(
                     function(){$("#dato3 span").html(k);
                         k++;
-                        if(k==52)
+                        if(k>=52)
                         {
                             clearInterval(dato3time);
                         }

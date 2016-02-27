@@ -70,7 +70,7 @@ angular.module('ZamkaAdmin', ['ngMaterial','ngRoute','mdDateTime','ngImgCrop'])
             requireBase: false
         });
     })
-    .controller('AppCtrl', function($scope,$timeout,$location,$http,$log,$mdToast,$mdSidenav){
+    .controller('AppCtrl', function($scope,$timeout,$location,$http,$log,$mdToast,$mdSidenav,$rootScope){
         $scope.toggleSidenav = function(menuId) {
             $mdSidenav(menuId).toggle();
         };
@@ -126,23 +126,29 @@ angular.module('ZamkaAdmin', ['ngMaterial','ngRoute','mdDateTime','ngImgCrop'])
                 fbid:fbid
             }).success(function(data){
                 $scope.cargando = false;
-                $log.log("--SUCCESS--");
-                $scope.usuario = {
-                    email:data.email,
-                    fbid:data.facebookID,
-                    foto:data.image.url,
-                    nombre:data.name,
-                    id:data.objectId,
-                    categorias:data.Gustos||[],
-                    sexo:data.gender,
-                    password:password,
-                    notif:data.Notificaciones
-                };
-                localStorage.usuario = JSON.stringify($scope.usuario);
-                $log.log("data:",data);
-                $log.log("usuario:",$scope.usuario);
-                if (data.objectId && !noRedirect){
-                    $location.url("/App/Eventos");
+
+                if(!data.hasOwnProperty("code")){
+                    $log.log("--SUCCESS--");
+                    $scope.usuario = {
+                        email:data.email,
+                        fbid:data.facebookID,
+                        foto:data.image.url,
+                        nombre:data.name,
+                        id:data.objectId,
+                        categorias:data.Gustos||[],
+                        sexo:data.gender,
+                        password:password,
+                        notif:data.Notificaciones
+                    };
+                    localStorage.usuario = JSON.stringify($scope.usuario);
+                    $log.log("data:",data);
+                    $log.log("usuario:",$scope.usuario);
+                    if (data.objectId && !noRedirect){
+                        $location.url("/App/Eventos");
+                    }
+                } else {
+                    $log.log("--LOGIN ERROR--");
+                    $scope.loginErr = data.message;  //!data.code == '101'
                 }
             }).error(function(data){
                 $scope.cargando = false;
@@ -477,7 +483,7 @@ angular.module('ZamkaAdmin', ['ngMaterial','ngRoute','mdDateTime','ngImgCrop'])
         };
     })
     .controller('indexCtrl',function($scope,$timeout,$location){
-        
+
         $timeout(function(){
             if($scope.usuario){
                 $location.url("/App/Eventos");

@@ -1,26 +1,44 @@
-<div layout="column" layout-align="center center" flex="80">
-    <img src="/img/logo.png" class="animated zoomInDown">
-    <div layout="row" layout-align="space-around center" layout-wrap layout-padding>
-        <md-input-container flex="50">
-            <label>E-MAIL</label>
-            <input type="email" ng-model="user.email">
-        </md-input-container>
-        <md-input-container flex="50">
-            <label>PASSWORD</label>
-            <input type="password" ng-model="user.password">
-        </md-input-container>
-        <div flex="50">
-            <p>No Tienes cuenta? <a href="/App/SignUp">Registrate Aqui.</a></p>
-        </div>
-        <div layout="row" layout-align="space-around center" flex="50">
-            <a href="/App/SignUp">Olvidaste tu Contraseña?</a>
-            <md-button class="md-raised md-primary" ng-click="login(user.email,user.password,null)" flex>Ingresar</md-button>
-        </div>
-        <div layout="row" layout-align="space-around center" flex="100" layout-padding>
-            <hr flex="33">
-            <p flex="33" style="text-align: center"> o Ingresa por </p>
-            <hr flex="33">
-        </div>
-        <md-button class="md-raised md-primary" flex="100" ng-click="loginfb()">Facebook</md-button>
+<div layout="column" layout-align="center center" flex="40">
+    <div layout="row" layout-align="center center" layout-wrap layout-padding>
+        <img src="/img/logo_zamka.png" class="animated zoomInDown">
     </div>
+    <form name="loginForm">
+        <div layout="row" layout-align="space-around center" layout-wrap>
+            <div layout="row" flex="50" layout-align="center center">
+                <md-input-container>
+                    <label>Correo Electrónico</label>
+                    <input type="email" ng-model="user.email" required>
+                </md-input-container>
+            </div>
+            <div layout="row" flex="50" layout-align="center center">
+                <md-input-container>
+                    <label>Contraseña</label>
+                    <input type="password" ng-model="user.password" required>
+                </md-input-container>
+            </div>
+            <div layout="row" flex="50">
+                <div layout="column" flex="50"layout-align="center center">
+                    No Tienes cuenta?
+                </div>
+                <div layout="column" flex="50" layout-align="center center">
+                    <a href="/App/SignUp">Registrate Aqui.</a>
+                </div>
+            </div>
+            <div layout="row" layout-align="space-around center" flex="50">
+                <a href="/App/SignUp">Olvidaste tu Contraseña?</a>
+            </div>
+            <div layout="row" layout-align="end center" flex="100">
+                <md-button class="md-raised md-primary" ng-disabled="!loginForm.$valid" ng-click="login(user.email,user.password,null)" flex="30">Ingresar</md-button>
+            </div>
+            <div layout="row" layout-align="space-around center" flex="100" ng-show="loginErr" layout-padding>
+                <p class="md-flat error">Usuario o contraseña inválidos</p>
+            </div>
+            <div layout="row" layout-align="space-around center" flex="100" layout-padding>
+                <hr flex="33">
+                <div flex="33" style="text-align: center"> o Ingresa por </div>
+                <hr flex="33">
+            </div>
+            <md-button class="md-raised md-primary" flex="50" ng-click="loginfb()">Facebook</md-button>
+        </div>
+    </form>
 </div>
